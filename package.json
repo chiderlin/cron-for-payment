@@ -1,0 +1,19 @@
+{
+  "name": "cron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "timer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "moment": "^2.29.1",
+    "mysql2": "^2.2.5",
+    "node-schedule": "^2.0.0"
+  }
+}
