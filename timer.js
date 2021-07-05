@@ -7,7 +7,7 @@ let format_today;
 let next_pay_date;
 let count = 0;
 
-const cronjob = schedule.scheduleJob('0 31 14 * * ?',()=>{ // 每天08:00執行一次
+const cronjob = schedule.scheduleJob('0 40 14 * * ?',()=>{ // 每天08:00執行一次
     
     let today = moment();
     format_today = today.format('YYYY-MM-DD');
