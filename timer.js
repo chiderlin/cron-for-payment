@@ -7,7 +7,7 @@ let format_today;
 let next_pay_date;
 let count = 0;
 
-const cronjob = schedule.scheduleJob('0 0 8 * * ?',()=>{ // 每天08:00執行一次
+const cronjob = schedule.scheduleJob('0 31 14 * * ?',()=>{ // 每天08:00執行一次
     
     let today = moment();
     format_today = today.format('YYYY-MM-DD');
@@ -102,7 +102,7 @@ function insert_order(transaction_id,amount,currency, paymentId, callback){
         dateStrings: true,
     });
     db.connect()
-    const sql = `insert into orders(transaction_id, currency, amount, paymentId) value ('${transaction_id}','${currency}','${amount}','${paymentId}')`
+    const sql = `insert into Orders(transaction_id, currency, amount, paymentId) value ('${transaction_id}','${currency}','${amount}','${paymentId}')`
     db.query(sql, (err, result)=>{
         if(err){
             throw err;
