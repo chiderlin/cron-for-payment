@@ -110,5 +110,4 @@ function insert_order(transaction_id,amount,currency, paymentId, callback){
             return callback('insert 1 record');
         }
     })
-
 }
