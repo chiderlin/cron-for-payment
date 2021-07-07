@@ -7,7 +7,7 @@ let format_today;
 let next_pay_date;
 let count = 0;
 
-const cronjob = schedule.scheduleJob('0 0 10 * * ?',()=>{ // 每天10:00執行一次
+const cronjob = schedule.scheduleJob('0 15 10 * * ?',()=>{ // 每天10:00執行一次
     
     let today = moment();
     format_today = today.format('YYYY-MM-DD');
@@ -65,8 +65,9 @@ function payByToken(post_data,paymentId){
             const transaction_id = data.bank_transaction_id;
             const amount = data.amount;
             const currency = data.currency;
+            const rec_trade_id = data.rec_trade_id;
             // 把其他資料存到order db
-            insert_order(transaction_id,amount,currency, paymentId, (ok)=>{
+            insert_order(transaction_id,amount,currency,rec_trade_id, paymentId, (ok)=>{
                 // 更新付款時間到payments => next pay date
 
                 // let next_pay_date = today.add(1, 'month').format('YYYY-MM-DD') // 加一個月
@@ -93,7 +94,7 @@ function payByToken(post_data,paymentId){
     })
 };
 
-function insert_order(transaction_id,amount,currency, paymentId, callback){
+function insert_order(transaction_id,amount,currency,rec_trade_id, paymentId, callback){
     const db = mysql.createConnection({
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
@@ -102,7 +103,7 @@ function insert_order(transaction_id,amount,currency, paymentId, callback){
         dateStrings: true,
     });
     db.connect()
-    const sql = `insert into Orders(transaction_id, currency, amount, paymentId) value ('${transaction_id}','${currency}','${amount}','${paymentId}')`
+    const sql = `insert into Orders(transaction_id, currency, amount,rec_trade_id, paymentId) value ('${transaction_id}','${currency}','${amount}','${rec_trade_id}','${paymentId}')`
     db.query(sql, (err, result)=>{
         if(err){
             throw err;
