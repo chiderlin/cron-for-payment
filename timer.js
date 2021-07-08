@@ -14,7 +14,7 @@ const db = mysql.createConnection({
     database: process.env.DB,
     dateStrings: true,
 });
-const cronjob = schedule.scheduleJob('0 0 10 * * ?',()=>{ // 每天10:00執行一次
+const cronjob = schedule.scheduleJob('0 35 10 * * ?',()=>{ // 每天10:00執行一次
     
     let today = moment();
     format_today = today.format('YYYY-MM-DD');
