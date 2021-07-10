@@ -93,6 +93,7 @@ function payByToken(post_data,paymentId){
                     }
                     count++;
                     console.log(count + 'record(s) updated');
+                    db.end();
                 })
             })    
         }
@@ -116,5 +117,4 @@ function insert_order(transaction_id,amount,currency,rec_trade_id, paymentId, ca
             return callback('insert 1 record');
         }
     })
-    db.end();
 }
