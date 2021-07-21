@@ -36,7 +36,11 @@ const cronjob = schedule.scheduleJob('0 0 10 * * ?',()=>{ // 每天10:00執行�
                     } else {
                         console.log(paymentId);
                         console.log(res)
-                        plan = res[0].plan; //[ TextRow { plan: 1000 } ]
+                        try{
+                            plan = res[0].plan; //[ TextRow { plan: 1000 } ]
+                        } catch(e) {
+                            plan = 0
+                        }
                     }
                     const post_data = {
                         'card_key':card_key,
