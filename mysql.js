@@ -10,18 +10,6 @@ var pool = mysql.createPool({
     connectionLimit : 10 // 連線池可建立的總連線數上限(預設最多為10個連線數)
 });
 
-// pool.getConnection(function(err, connection){
-//     if(err){
-//         console.log(err);
-//     } else {
-//         connection.query('select * from Users', (err, rows)=>{
-//             console.log(rows)
-//             connection.release();
-//         })
-//     }
-// })
-
-
 
 const query = ((sql, cb)=>{
     pool.getConnection((err, conn)=>{
